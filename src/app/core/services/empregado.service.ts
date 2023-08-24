@@ -26,7 +26,20 @@ export class EmpregadoService {
   }
 
   cadastrarEmpregado(empregado: IEmpregado): Observable<IEmpregado> {
-    console.log('entrou');
-    return this.http.post<IEmpregado>(this.api, empregado);
+    return this.http.post<IEmpregado>(this.api, empregado).pipe(
+      switchMap((response) => {
+        return of(response);
+      }),
+      catchError((err) => throwError(() => console.log(err)))
+    );
+  }
+
+  deletarEmpregado(id: string):Observable<Object> {
+    return this.http.delete(`${this.api}/${id}`).pipe(
+      switchMap((response) => {
+        return of(response);
+      }),
+      catchError((err) => throwError(() => console.log(err)))
+    );
   }
 }

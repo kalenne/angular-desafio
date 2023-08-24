@@ -14,6 +14,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.items = [
       {
+        label: 'Início',
+        routerLink:'/'
+      },
+      {
         label: 'Empregados',
         routerLink:'empregados'
       },
@@ -21,6 +25,7 @@ export class HeaderComponent implements OnInit {
         label: 'Cadastro',
         routerLink:'cadastro'
       },
+    
     ];
   }
 }

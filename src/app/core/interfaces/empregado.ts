@@ -6,6 +6,5 @@ export interface IEmpregado {
     sobrenome: string
     telefone: string,
     endereco: string,
-    corCabelo: string,
     foto: string
 }
