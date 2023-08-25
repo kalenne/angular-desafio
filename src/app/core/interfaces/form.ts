@@ -8,5 +8,5 @@ export interface IForm {
     sobrenome: FormControl<string>,
     telefone: FormControl<string>,
     endereco: FormControl<string>,
-    foto: FormControl<string>
+    foto: FormControl<string | null>
 }

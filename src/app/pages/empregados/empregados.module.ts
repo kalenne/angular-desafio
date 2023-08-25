@@ -8,10 +8,13 @@ import {TableModule} from 'primeng/table';
 import { HttpClientModule } from '@angular/common/http';
 import {DialogModule} from 'primeng/dialog';
 import {ButtonModule} from 'primeng/button';
+import {CardModule} from 'primeng/card';
+import { TelefonePipe } from 'src/app/core/pipes/telefone.pipe';
 
 @NgModule({
   declarations: [
-    EmpregadosComponent
+    EmpregadosComponent,
+    TelefonePipe
   ],
   imports: [
     CommonModule,
@@ -19,7 +22,8 @@ import {ButtonModule} from 'primeng/button';
     TableModule,
     HttpClientModule,
     DialogModule,
-    ButtonModule
+    ButtonModule,
+    CardModule
   ]
 })
 export class EmpregadosModule { }

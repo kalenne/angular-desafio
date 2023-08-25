@@ -20,12 +20,7 @@ export class HeaderComponent implements OnInit {
       {
         label: 'Empregados',
         routerLink:'empregados'
-      },
-      {
-        label: 'Cadastro',
-        routerLink:'cadastro'
-      },
-    
+      }    
     ];
   }
 }

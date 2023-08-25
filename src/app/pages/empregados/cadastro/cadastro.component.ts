@@ -20,6 +20,8 @@ import { Observable, catchError, of, switchMap, tap, throwError } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { IEmpregado } from 'src/app/core/interfaces/empregado';
 import { IForm } from 'src/app/core/interfaces/form';
+import {InputMaskModule} from 'primeng/inputmask';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -33,6 +35,7 @@ import { IForm } from 'src/app/core/interfaces/form';
     ToastModule,
     MessagesModule,
     MessageModule,
+    InputMaskModule
   ],
   providers: [MessageService],
   templateUrl: './cadastro.component.html',
@@ -43,7 +46,8 @@ export class CadastroComponent implements OnInit {
 
   constructor(
     private empService: EmpregadoService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ) {
     this.formGroup = new FormGroup<IForm>({
       nome: new FormControl('', {
@@ -75,20 +79,22 @@ export class CadastroComponent implements OnInit {
         nonNullable: true,
       }),
       foto: new FormControl('', {
-        validators: [Validators.required],
-        nonNullable: true,
+       nonNullable: false,
       }),
     });
   }
 
   ngOnInit(): void {}
 
-  cadastrarEmpregado() {
-    let dadosEmpregado: IEmpregado = this.formGroup.value as IEmpregado;
-    const novoUsuario$: Observable<IEmpregado> =
-      this.empService.cadastrarEmpregado(dadosEmpregado);
-
-    return novoUsuario$.subscribe(() => this.mensagemCadastro());
+  cadastrarEmpregado() {    
+    if (this.formGroup.valid) {
+      let dadosEmpregado: IEmpregado = { ...this.formGroup.value, foto: '' } as IEmpregado;
+      const novoUsuario$: Observable<IEmpregado> =
+        this.empService.cadastrarEmpregado(dadosEmpregado);
+        
+        return novoUsuario$.subscribe(() => this.mensagemCadastro());
+    }
+    return null;
   }
 
   mensagemCadastro() {
@@ -98,5 +104,11 @@ export class CadastroComponent implements OnInit {
       detail: 'Cadastrado com sucesso!',
       key: 'toast',
     });
+
+    this.router.navigate(['/empregados']);
+  }
+
+  voltar(){
+    this.router.navigate(['/empregados']);
   }
 }

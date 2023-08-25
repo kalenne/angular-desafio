@@ -3,7 +3,7 @@ export interface IEmpregado {
     idade: number,
     genero: string,
     nome: string,
-    sobrenome: string
+    sobrenome: string,
     telefone: string,
     endereco: string,
     foto: string

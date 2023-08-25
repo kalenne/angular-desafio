@@ -1,1 +1,26 @@
-<p>home works!</p>
+<div class="container pt-5">
+  <div class="flex-row">
+    <div class="grid">
+      <div *ngFor="let info of informacao" class="col pl-3">
+        <p-card class="card" header="{{ info.info }}" styleClass="p-mb-2">
+          <ng-template pTemplate="content">
+            <img src="{{ info.imagem }}" alt="" width="200px" height="150px" />
+            <p class="text-justify">{{ info.texto }}</p>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+  </div>
+  <div class="card-container pl-2">
+    <p-card class="card" header="Taxas" styleClass="p-mb-2">
+      <ng-template pTemplate="content">
+        <p-chart
+          type="bar"
+          [data]="basicData"
+          [options]="basicOptions"
+          height="50vh"
+        ></p-chart>
+      </ng-template>
+    </p-card>
+  </div>
+</div>

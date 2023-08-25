@@ -17,17 +17,15 @@ export class EmpregadosComponent implements OnInit {
   constructor(private empService: EmpregadoService) {}
 
   ngOnInit(): void {
-
     this.listaEmpregados();
-    
   }
 
-  listaEmpregados():Observable<IEmpregado[]> {
+  listaEmpregados(): Observable<IEmpregado[]> {
     this.empregados$ = this.empService
       .listarEmpregados()
       .pipe(catchError((err) => throwError(() => console.log(err))));
 
-      return this.empregados$;
+    return this.empregados$;
   }
 
   showBox(empregado: IEmpregado) {
@@ -35,11 +33,4 @@ export class EmpregadosComponent implements OnInit {
     this.empregado = empregado;
   }
 
-  deletarEmpregados(id: string) {
-    let deletarUsuario$ = this.empService.deletarEmpregado(id);
-
-
-    
-    return deletarUsuario$.subscribe();
-  }
 }

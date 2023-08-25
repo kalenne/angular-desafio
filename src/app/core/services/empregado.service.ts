@@ -34,12 +34,5 @@ export class EmpregadoService {
     );
   }
 
-  deletarEmpregado(id: string):Observable<Object> {
-    return this.http.delete(`${this.api}/${id}`).pipe(
-      switchMap((response) => {
-        return of(response);
-      }),
-      catchError((err) => throwError(() => console.log(err)))
-    );
-  }
+
 }
